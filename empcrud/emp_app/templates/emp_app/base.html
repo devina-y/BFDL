@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Emp</title>
+        <link rel="stylesheet" href="{% static 'emp_app/css/bootstrap.min.css' %}">
+    </head>
+    <body>
+        <div class="container mt-5">
+            <h2 class="=text-center alert alert-danger">Function Based</h2>
+            {% block content %}
+            
+            {% endblock content %}
+        </div>
+        <script src="{% static 'emp_app/js/jquery.js' %}"></script>
+        <script src="{% static 'emp_app/js/popper.js' %}"></script>
+        <script src="{% static 'emp_app/js/bootstrap.min.js' %}"></script>
+    </body>
+</html>

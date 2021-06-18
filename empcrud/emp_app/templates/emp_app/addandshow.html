@@ -1,0 +1,51 @@
+{% extends 'emp_app/base.html' %}
+{% block content %}
+
+<h4 class="text-center alert alert-info col-sm-4">Add New Emp</h4>
+
+<div class="row">
+    <div class="col-sm-4">
+        <form method="POST">
+            {% csrf_token %}
+            {{form.as_p}}
+            <input type="submit" class="btn btn-success" value="Add">
+        </form>
+    </div>
+
+    <div class="col-sm-7 offset-1">
+        <h4 class="text-center alert alert-info">Show Emp Info</h4>
+        {% if emp %}
+        <table class="table table-hover">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for emp in emp %}
+              <tr>
+                <th scope="row">{{emp.id}}</th>
+                <td>{{emp.name}}</td>
+                <td>{{emp.email}}</td>
+                <td>
+                    <a href="{% url 'updatedata' emp.id %}" class="btn btn-warning btn-sm">Update</a>
+                    <form action="{% url 'deletedata' emp.id %}" method="post" class="d-inline">
+                      {% csrf_token %}
+                     <input type="submit" class="btn btn-danger" value="Delete"> 
+                    </form>
+                </td>
+              </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+
+        {% else %}
+        <h4 class="text-center alert alert-warning">No Records</h4>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock content %}
